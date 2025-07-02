@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  auth:
+    image: nest-auth:latest
+    ports:
+      - '3001:3000'
+    environment:
+      - REDIS_HOST=redis-10462.c11.us-east-1-2.ec2.redns.redis-cloud.com
+      - REDIS_PORT=10462
+      - REDIS_PASSWORD=QIKpvcMZ5nbrfjYpqXwOw1R0ORG3caCv
+      - JWT_SECRET=YkpuSlxHiA8yVXA4
+      - JWT_EXPIRES_IN=15m
+      - REFRESH_TOKEN_EXPIRES_IN=7d
+      - PORT=3000
+      - DATABASE_URL=mongodb+srv://duckzuybidan:duytan19012310@cluster0.oljdxa7.mongodb.net/nest-auth?retryWrites=true&w=majority&appName=Cluster0
+      - DOCS_PATH=api/docs
+      - GOOGLE_CLIENT_ID=66618205283-3hqs7om2o9hjof5nr2001gqkv8q9k91c.apps.googleusercontent.com
+      - GOOGLE_CLIENT_SECRET=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
+      - GOOGLE_CALLBACK_URL=http://localhost:3000/v1/auth/google-auth/redirect
+      - CLIENT_REDIRECT_URL=http://localhost:3000/api/docs
+      - GRPC_URL=0.0.0.0:50051
+    networks:
+      - backend
+
+networks:
+  backend:
